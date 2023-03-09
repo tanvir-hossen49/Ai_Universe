@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- tailwind css link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awesome cdn link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- css link -->
+    <link rel="stylesheet" href="app/style.css" />
+
+    <!-- js file link -->
+    <script src="app/app.js" defer></script>
+
+    <title>Ai Universe</title>
+  </head>
+  <body>
+    <main>
+      <!-- heading -->
+      <div class="text-center my-10">
+        <h1 class="text-5xl">AI Universe Hub</h1>
+        <button
+          id="sort-by-date"
+          class="bg-[#EB5757] text-white px-7 py-3 text-xl mt-5 rounded-lg"
+        >
+          Sort By Date
+        </button>
+      </div>
+      <!-- card container -->
+      <div
+        id="card-container"
+        class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 gap-2 lg:mx-8 md:mx-6 mx-5"
+      ></div>
+
+      <!-- see more button -->
+      <div class="text-center mb-5">
+        <button
+          id="see-all"
+          class="bg-[#EB5757] text-white px-7 py-3 text-xl mt-5 rounded-lg hidden"
+        >
+          See More
+        </button>
+      </div>
+
+      <!-- show spinner -->
+      <div id="spinner" class="flex justify-center items-center hidden">
+        <div
+          class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"
+        ></div>
+      </div>
+    </main>
+    <!-- modal -->
+    <div
+      id="modal-container"
+      class="hidden overflow-y-auto overflow-x-hidden md:w-full md:h-screen fixed top-0 left-0 z-50 bg-[#11111199] flex justify-center items-center p-5"
+    ></div>
+  </body>
+</html>
