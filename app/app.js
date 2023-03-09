@@ -1,7 +1,6 @@
 // Global Variable
 const seeAllBtn = document.getElementById("see-all");
 let sortedArray = [];
-let countSortBtnClick = 0;
 
 // onload handler
 window.onload = () => {
@@ -13,11 +12,49 @@ window.onload = () => {
 // This function will take care of getting all the DOM references
 function main() {
   // Dom References
-  const sortByDateBtn = document.getElementById("sort-by-date");
+  const sortByDateBtn = document.getElementById("sort-date-btn"),
+    defaultOrder = document.getElementById("default"),
+    ascendingOrder = document.getElementById("ascending"),
+    descendingOrder = document.getElementById("descending");
 
   // event listeners
-  sortByDateBtn.addEventListener("click", sortByDate);
-  seeAllBtn.addEventListener("click", showAllCard);
+  seeAllBtn.addEventListener("click", () => {
+    showAllCard();
+
+    // reset innerText of button
+    let sortingMethod = document.getElementById("sorting-method");
+    sortingMethod.innerText = "";
+    sortingMethod.innerText = "Default";
+  });
+
+  sortByDateBtn.addEventListener("click", () => {
+    showDropdownOptions(null);
+  });
+
+  ascendingOrder.addEventListener("click", (e) => {
+    sortByDate((a, b) => {
+      return (
+        new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf()
+      );
+    });
+    showDropdownOptions(e.target);
+  });
+
+  descendingOrder.addEventListener("click", (e) => {
+    sortByDate((a, b) => {
+      return (
+        new Date(b.published_in).valueOf() - new Date(a.published_in).valueOf()
+      );
+    });
+    showDropdownOptions(e.target);
+  });
+
+  defaultOrder.addEventListener("click", (e) => {
+    sortByDate((a, b) => {
+      return a.id - b.id;
+    });
+    showDropdownOptions(e.target);
+  });
 }
 
 /**
@@ -86,7 +123,9 @@ const displayData = (data, isShow) => {
 
     div.innerHTML = `
         <div>
-            <img src="${image}" alt="" class='h-60 w-full rounded-lg'/>
+            <div class='h-60 overflow-hidden rounded-lg'>
+              <img src="${image}" alt="" class=' transform duration-300 hover:scale-110 w-full h-full '/>
+            </div>
           </div>
           <div class="mt-5">
             <div>
@@ -237,20 +276,11 @@ const displayModalData = (data) => {
   EVENT HANDLERS
 ------------------
  */
-const sortByDate = () => {
+const sortByDate = (callBack) => {
   if (sortedArray.length === 0) return;
 
-  // sort by ascending order
-  if (!countSortBtnClick) {
-    sortedArray.sort((a, b) => {
-      return (
-        new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf()
-      );
-    });
-    countSortBtnClick++;
-  } else {
-    countSortBtnClick = 0;
-    sortedArray.sort((a, b) => a.id - b.id);
+  if (callBack) {
+    sortedArray.sort(callBack);
   }
 
   // check user clicked see all button or not
@@ -268,7 +298,20 @@ const showAllCard = () => {
     loadData(false);
   }
 };
+const showDropdownOptions = (element) => {
+  const option = document.getElementById("options");
+  option.classList.toggle("hidden");
+  document.getElementById("arrow-up").classList.toggle("hidden");
+  document.getElementById("arrow-down").classList.toggle("hidden");
 
+  if (element) {
+    option.querySelector(".active").classList.remove("active");
+    element.classList.add("active");
+    let sortingMethod = document.getElementById("sorting-method");
+    sortingMethod.innerText = "";
+    sortingMethod.innerText = element.innerText;
+  }
+};
 /**
 ------------------
   UTILS

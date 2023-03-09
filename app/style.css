@@ -25,3 +25,7 @@ button {
 p {
   font-weight: 400 !important;
 }
+.active {
+  background-color: rgb(99, 102, 241) !important;
+  color: white !important;
+}

@@ -27,12 +27,66 @@
       <!-- heading -->
       <div class="text-center my-10">
         <h1 class="text-5xl">AI Universe Hub</h1>
-        <button
-          id="sort-by-date"
-          class="bg-[#EB5757] text-white px-7 py-3 text-xl mt-5 rounded-lg"
-        >
-          Sort By Date
-        </button>
+
+        <!-- dropdown menu -->
+        <div class="flex flex-row justify-center pt-4 min-w-screen">
+          <div class="flex-none p-2">
+            <button
+              id="sort-date-btn"
+              class="flex flex-row justify-between w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600"
+            >
+              <span class="select-none" id="sorting-method">Sort By Date</span>
+
+              <svg
+                id="arrow-down"
+                class="hidden w-6 h-6 stroke-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                id="arrow-up"
+                class="w-6 h-6 stroke-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+            <div
+              id="options"
+              class="hidden w-48 py-2 mt-2 bg-white rounded-lg shadow-xl"
+            >
+              <a
+                href="#"
+                id="default"
+                class="active block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
+                >Default</a
+              >
+              <a
+                href="#"
+                id="ascending"
+                class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
+                >Ascending Order</a
+              >
+              <a
+                href="#"
+                id="descending"
+                class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
+                >Descending Order</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
       <!-- card container -->
       <div
