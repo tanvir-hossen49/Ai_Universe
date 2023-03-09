@@ -74,7 +74,16 @@ const loadData = async (isShow = false) => {
     const data = await res.json();
     displayData(data.data.tools, isShow);
   } catch (error) {
-    console.log(error);
+    showSpinner(false);
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.classList.add("text-center", "text-2xl");
+
+    let Connected = window.navigator.onLine;
+    if (Connected) {
+      cardContainer.innerHTML = "Faild to load Data.......";
+    } else {
+      cardContainer.innerHTML = "No Internet Connection......";
+    }
   }
 };
 
